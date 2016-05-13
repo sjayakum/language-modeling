@@ -4,13 +4,14 @@
 
 ### Type 1
 
-`
+```
 main_input = Input(shape=(9,1), dtype='float32', name='main_input')
 lstm_encoder = LSTM(200,return_sequences=True)(main_input)
 lstm_decoder = LSTM(9)(lstm_encoder)
 output = Dense(2, activation='softmax')(lstm_decoder)
 model = Model(input=main_input, output=output)
-`
+```
+
 
 
 **Input** to the model contains Nsamples each having *9 Timesteps* wherein each timestep has *1 attribute*
@@ -42,15 +43,17 @@ This apporach is similiar to normal Stacked LSTM
 
 
 
-`main_input = Input(shape=(9,1), dtype='float32', name='main_input')
+```
+main_input = Input(shape=(9,1), dtype='float32', name='main_input')
 lstm_encoder = LSTM(18,return_sequences=True)(main_input)
 interim_output = Dense(1,)(lstm_encoder)
 encoder_model = Model(input=main_input, output=interim_output)`
-
-`lstm_decoder = LSTM(encoder_model)(interim_output)
+```
+```
+lstm_decoder = LSTM(encoder_model)(interim_output)
 final_output = Dense(2, activation='softmax')(lstm_decoder)
 decoder_model = Model(input=lstm_decoder, output=interim_output)`
-
+```
 
 **Input** to the model contains Nsamples each having *9 Timesteps* wherein each timestep has *1 attribute*
 
